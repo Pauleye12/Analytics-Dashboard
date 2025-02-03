@@ -3,7 +3,7 @@ import { BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 const Herosection = () => {
   return (
-    <div className="lg:min-h-screen h-full bg-gray-50">
+    <div className="lg:min-h-screen pt-6 lg:pt-0 h-full bg-gray-50">
       {/* Hero Section with Pattern Background */}
       <div className="relative bg-white lg:h-screen overflow-hidden">
         <div
