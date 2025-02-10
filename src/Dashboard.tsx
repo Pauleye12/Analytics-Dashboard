@@ -3,6 +3,13 @@ import { MetricCard } from "./components/MetricCard";
 import { DataTable } from "./components/DataTable";
 import { BarChart } from "./components/BarChart";
 import type { AnalyticsData } from "./types/analytics";
+import { useNavigate } from "react-router";
+
+//firebase configs
+import app from "./firebaseconfig";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import Navbar from "./components/Navbar";
+const auth = getAuth(app);
 
 const mockData: AnalyticsData = {
   totalVisitors: 25420,
@@ -39,9 +46,31 @@ const mockData: AnalyticsData = {
   ],
 };
 const Dashboard = () => {
+  const navigate = useNavigate();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // const uid = user.uid;
+    } else {
+      // User is signed out
+      navigate("/signIn");
+    }
+  });
+
+  const handleSignOut = (e: React.MouseEvent) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(() => {
+        navigate("/signIn");
+        alert("Successfully signed out");
+      })
+      .catch((error) => {
+        alert(`Sign out failed: ${error.message}`);
+      });
+  };
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto mt-[100px] px-4 py-8">
+        <Navbar />
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
@@ -54,6 +83,12 @@ const Dashboard = () => {
           <div className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer">
             Export Report
           </div>
+          <button
+            onClick={handleSignOut}
+            className=" border border-solid border-blue-600"
+          >
+            sign Out
+          </button>
         </div>
 
         {/* Key Metrics */}
