@@ -1,14 +1,15 @@
-import { Users, MousePointerClick, Globe, Link } from "lucide-react";
-import { MetricCard } from "./components/MetricCard";
-import { DataTable } from "./components/DataTable";
-import { BarChart } from "./components/BarChart";
-import type { AnalyticsData } from "./types/analytics";
+import { Users, MousePointerClick, Globe, Link, Files } from "lucide-react";
+import { MetricCard } from "../components/MetricCard";
+import { DataTable } from "../components/DataTable";
+import { BarChart } from "../components/BarChart";
+import type { AnalyticsData } from "../types/analytics";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 //firebase configs
-import app from "./firebaseconfig";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import Navbar from "./components/Navbar";
+import app from "../firebaseconfig";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import Navbar from "../components/Navbar";
 const auth = getAuth(app);
 
 const mockData: AnalyticsData = {
@@ -47,6 +48,8 @@ const mockData: AnalyticsData = {
 };
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [isCopied, setIsCopied] = useState(false);
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // const uid = user.uid;
@@ -56,21 +59,27 @@ const Dashboard = () => {
     }
   });
 
-  const handleSignOut = (e: React.MouseEvent) => {
-    e.preventDefault();
-    signOut(auth)
-      .then(() => {
-        navigate("/signIn");
-        alert("Successfully signed out");
-      })
-      .catch((error) => {
-        alert(`Sign out failed: ${error.message}`);
-      });
+  const copyTrackingId = () => {
+    navigator.clipboard.writeText("12345678910").then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    });
   };
+
+  // const handleSignOut = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   signOut(auth)
+  //     .then(() => {
+  //       navigate("/signIn");
+  //       alert("Successfully signed out");
+  //     })
+  //     .catch((error) => {
+  //       alert(`Sign out failed: ${error.message}`);
+  //     });
+  // };
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto mt-[100px] px-4 py-8">
-        <Navbar />
+      <div className="max-w-7xl mx-auto pt-[100px] px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
@@ -83,16 +92,25 @@ const Dashboard = () => {
           <div className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer">
             Export Report
           </div>
-          <button
-            onClick={handleSignOut}
-            className=" border border-solid border-blue-600"
-          >
-            sign Out
-          </button>
         </div>
 
+        <div
+          className="text-gray-900 py-1 px-4 rounded-full font-medium text-sm  bg-blue-100 w-fit cursor-pointer "
+          onClick={copyTrackingId}
+        >
+          <p className="flex gap-1 items-center">
+            Tracking ID: <span>12345678910</span>{" "}
+            <Files size={16} className="text-blue-600 ml-0.5 " />
+          </p>
+        </div>
+        {isCopied && (
+          <p className="text-green-500 mt-3 text-sm font-medium">
+            Tracking ID Copied to clipboard!
+          </p>
+        )}
+
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <MetricCard
             title="Total Visitors"
             value={mockData.totalVisitors.toLocaleString()}

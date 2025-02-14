@@ -1,5 +1,5 @@
-import React from 'react';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import React from "react";
+import { LucideIcon } from "lucide-react";
 
 interface MetricCardProps {
   title: string;
@@ -11,7 +11,12 @@ interface MetricCardProps {
   };
 }
 
-export const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon: Icon, trend }) => {
+export const MetricCard: React.FC<MetricCardProps> = ({
+  title,
+  value,
+  icon: Icon,
+  trend,
+}) => {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
       <div className="flex items-center justify-between">
@@ -25,10 +30,14 @@ export const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon: Icon
           <h3 className="text-2xl font-bold text-gray-900">{value}</h3>
           {trend && (
             <div className="flex items-center mt-2">
-              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
-                trend.isPositive ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'
-              }`}>
-                {trend.isPositive ? '↑' : '↓'} {Math.abs(trend.value)}%
+              <span
+                className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
+                  trend.isPositive
+                    ? "bg-green-100 text-green-600"
+                    : "bg-red-100 text-red-600"
+                }`}
+              >
+                {trend.isPositive ? "↑" : "↓"} {Math.abs(trend.value)}%
               </span>
               <span className="ml-2 text-xs text-gray-500">vs last period</span>
             </div>
@@ -37,4 +46,4 @@ export const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon: Icon
       </div>
     </div>
   );
-}
+};

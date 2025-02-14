@@ -5,7 +5,9 @@ import {
   GoogleAuthProvider,
   User,
   signInWithPopup,
+  signInWithRedirect,
   onAuthStateChanged,
+  getRedirectResult,
 } from "firebase/auth";
 import { useNavigate } from "react-router";
 import Navbar from "../components/Navbar.tsx";
@@ -22,7 +24,7 @@ const OnboardingScreen = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/dashboard");
+        navigate("/projects");
         // const uid = user.uid;
       } else {
         // User is signed out
@@ -42,7 +44,7 @@ const OnboardingScreen = () => {
         setUserDets(user);
         // Replace prompt with better UI feedback
         alert("Login successful");
-        navigate("/dashboard");
+        navigate("/projects");
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })
@@ -56,6 +58,28 @@ const OnboardingScreen = () => {
         // The AuthCredential type that was used.
         // const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
+      });
+  };
+
+  const handleGoogleSignIn2 = () => {
+    signInWithRedirect(auth, provider);
+    // Wait for the redirect result after the sign-in
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential?.accessToken;
+          console.log(token);
+          const user = result.user;
+          setUserDets(user);
+          alert("Login successful");
+          navigate("/projects");
+        } else {
+          console.log("No result from redirect.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during sign-in:", error.message);
       });
   };
   console.log(userDets);
@@ -95,15 +119,15 @@ const OnboardingScreen = () => {
         </h1>
         <div className="flex flex-col gap-7 items-center">
           <button
-            onClick={handleGoogleSignIn}
+            onClick={handleGoogleSignIn2}
             className="flex justify-center bg-gray-900 text-white rounded-md items-center gap-4 hover:scale-105 transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 "
           >
             <span className="flat-color-icons--google"></span>{" "}
             <p>With Google</p>
           </button>
           <button
-            disabled
-            className="flex justify-center bg-[#1668e2] opacity-40 text-white rounded-md items-center gap-4 w-[270px] text-lg font-medium py-2 px-2 hover:cursor-not-allowed relative "
+            onClick={handleGoogleSignIn}
+            className="flex justify-center bg-[#1668e2] opacity-40 text-white rounded-md items-center gap-4 w-[270px] text-lg font-medium py-2 px-2 relative "
           >
             <span className="pajamas--github"></span>
             <p>With Github</p>
