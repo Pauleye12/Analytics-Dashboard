@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProjectsHome from "./pages/ProjectsHome";
 
 import ProjectsWrapper from "./pages/ProjectsWrapper";
+import NewProject from "./pages/NewProject";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/projects" element={<ProjectsWrapper />}>
           <Route index element={<ProjectsHome />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="new_project" element={<NewProject />} />
         </Route>
       </Routes>
     </BrowserRouter>

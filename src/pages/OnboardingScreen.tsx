@@ -1,88 +1,62 @@
-import { useState, useEffect } from "react";
-import app from "../firebaseconfig.ts";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  User,
-  signInWithPopup,
-  signInWithRedirect,
-  onAuthStateChanged,
-  getRedirectResult,
-} from "firebase/auth";
 import { useNavigate } from "react-router";
 import Navbar from "../components/Navbar.tsx";
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth(app);
-
 const OnboardingScreen = () => {
-  // const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+  // const [showDropdown, setShowDropdown] = useState(false);
 
-  const [userDets, setUserDets] = useState<User | null>(null);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       navigate("/projects");
+  //       // const uid = user.uid;
+  //     } else {
+  //       // User is signed out
+  //     }
+  //   });
+  // }, [navigate]); // Add navigate to dependency array
+  // useEffect(() => {
+  //   async function getRedirectResults() {
+  //     const response = await getRedirectResult(auth);
+  //     console.log(response);
+  //   }
+  //   getRedirectResults();
+  // }, []);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate("/projects");
-        // const uid = user.uid;
-      } else {
-        // User is signed out
-      }
-    });
-  }, [navigate]); // Add navigate to dependency array
+  // const handleGoogleSignIn = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       // This gives you a Google Access Token. You can use it to access the Google API.
+  //       // const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       // const token = credential?.accessToken;
+  //       // The signed-in user info.
+  //       const user = result.user;
 
-  const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential?.accessToken;
-        // The signed-in user info.
-        const user = result.user;
+  //       setUserDets(user);
+  //       // Replace prompt with better UI feedback
+  //       alert("Login successful");
+  //       navigate("/projects");
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //       // Handle Errors here.
+  //       // const errorCode = error.code;
+  //       // const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       // const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       // const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  // };
 
-        setUserDets(user);
-        // Replace prompt with better UI feedback
-        alert("Login successful");
-        navigate("/projects");
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        console.log(error.message);
-        // Handle Errors here.
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // The email of the user's account used.
-        // const email = error.customData.email;
-        // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
-
-  const handleGoogleSignIn2 = () => {
-    signInWithRedirect(auth, provider);
-    // Wait for the redirect result after the sign-in
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential?.accessToken;
-          console.log(token);
-          const user = result.user;
-          setUserDets(user);
-          alert("Login successful");
-          navigate("/projects");
-        } else {
-          console.log("No result from redirect.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error during sign-in:", error.message);
-      });
-  };
-  console.log(userDets);
+  // const handleGoogleSignIn2 = () => {
+  //   signInWithRedirect(auth, provider);
+  //   // Wait for the redirect result after the sign-in
+  // };
+  // console.log(userDets);
   // const handleSignOut = (e: React.MouseEvent) => {
   //   e.preventDefault();
   //   signOut(auth)
@@ -113,36 +87,31 @@ const OnboardingScreen = () => {
   return (
     <div className="w-full h-screen signInPattern bg-gray-50 px-4 py-2 justify-center flex items-center ">
       <Navbar />
-      <div className="flex flex-col gap-20 items-center justify-center">
-        <h1 className="text-gray-900 text-3xl font-semibold ">
+      <div className="flex flex-col gap-10 items-center justify-center">
+        <h1 className="text-gray-900 text-3xl font-semibold text-center ">
           Continue into your dashboard
         </h1>
-        <div className="flex flex-col gap-7 items-center">
+        <div className="flex gap-5 flex-col items-center">
           <button
-            onClick={handleGoogleSignIn2}
+            onClick={() => navigate("/projects")}
             className="flex justify-center bg-gray-900 text-white rounded-md items-center gap-4 hover:scale-105 transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 "
           >
             <span className="flat-color-icons--google"></span>{" "}
             <p>With Google</p>
           </button>
           <button
-            onClick={handleGoogleSignIn}
-            className="flex justify-center bg-[#1668e2] opacity-40 text-white rounded-md items-center gap-4 w-[270px] text-lg font-medium py-2 px-2 relative "
+            onClick={() => navigate("/projects")}
+            className="flex justify-center bg-[#1668e2] text-white rounded-md items-center gap-4 hover:scale-105 transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 relative "
           >
             <span className="pajamas--github"></span>
             <p>With Github</p>
-            <p className="text-red-600 text-sm absolute -bottom-6 left-0 ">
-              *Currently not available
-            </p>
           </button>
         </div>
-        <div className="flex gap-7 w-full items-center justify-center">
+        {/* <div className="flex gap-7 w-full items-center justify-center">
           <span className="bg-gray-800 h-0.5 w-full max-w-[500px]"></span>{" "}
           <p className="text-gray-900">or</p>{" "}
           <span className="bg-gray-800 h-0.5 w-full max-w-[500px]"></span>
-        </div>
-
-        <form action=""></form>
+        </div> */}
       </div>
     </div>
   );

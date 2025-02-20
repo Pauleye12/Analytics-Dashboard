@@ -65,10 +65,10 @@ const Navbar = () => {
               Documentation
             </Link>
             <Link
-              className="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center px-5 py-[6px] border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
               to={"/signIn"}
             >
-              LogIn
+              Log In
             </Link>
           </div>
         ) : location.pathname.includes("/signIn") ? (
