@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { TerminalDisplay } from "../components/TerminalDisp";
+import { CodeSnippet } from "../components/CodeSnippet";
+import { Link } from "react-router-dom";
 
 const NewProject = () => {
   const [projectName, setProjectName] = useState("");
@@ -15,10 +18,29 @@ const NewProject = () => {
       setStep(2);
     }
   };
+
+  const codeExample = `// Initialize the SDK
+const sdk = new ExampleSDK({
+  apiKey: process.env.API_KEY,
+  environment: 'production'
+});
+
+// Make API requests
+async function fetchUserData() {
+  try {
+    const response = await sdk.users.get({
+      userId: '123'
+    });
+    console.log('User data:', response);
+  } catch (error) {
+    console.error('Error fetching user:', error);
+  }
+}`;
   return (
     <div className="w-full min-h-screen newProjectBG2 flex justify-center">
       <div className="max-w-7xl grid gap-7 grid-cols-6 w-full mx-auto pt-[80px] px-4 py-8">
-        <div className=" hidden col-span-2 border-r border-gray-300 border-solid px-4 md:flex flex-col gap-14 pt-[80px]   ">
+        <div className=" hidden col-span-2 border-r border-gray-300 border-solid px-4 md:flex flex-col gap-14 pt-[80px]   "></div>
+        <div className=" fixed left-0 h-full hidden col-span-2 border-r border-gray-300 border-solid pointer-events-none w-full px-4 pl-[80px] md:flex flex-col gap-14 pt-[80px]   ">
           <h1 className="text-blue-600 text-2xl font-medium  w-full">
             Create Your New Project
           </h1>
@@ -76,8 +98,8 @@ const NewProject = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-full md:col-span-4 col-span-6 px-3 py-4">
-          <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full h-full md:col-span-4 col-span-6  px-3 py-4">
+          <div className="w-full h-full   flex justify-center items-center">
             {step == 1 ? (
               <div className="flex max-w-[400px] w-full flex-col gap-8">
                 <h1 className="text-blue-600 text-2xl font-medium">
@@ -107,10 +129,10 @@ const NewProject = () => {
                 </button>
               </div>
             ) : step == 2 ? (
-              <div className="w-full flex flex-col gap-4 ">
-                <h1 className="text-blue-600 text-sm">Initialization</h1>
-                <div className="flex flex-col gap-3">
-                  <h1 className="text-blue-600 text ">
+              <div className="w-full flex flex-col gap-7 ">
+                <h1 className="text-blue-600 font-medium">Initialization</h1>
+                <div className="flex flex-col gap-7">
+                  <h1 className="text-blue-600 text-3xl font-semibold ">
                     Javascript (Node / Generic)
                   </h1>
                   <p className="text-gray-600">
@@ -120,16 +142,36 @@ const NewProject = () => {
                     project.
                   </p>
                 </div>
-                <div>
-                  <div>
-                    <h2>Step 1: Install</h2>
-                    <p>npm install mofelytics</p>
+                <div className="mt-10 flex flex-col gap-14 ">
+                  <div className=" flex flex-col w-full gap-5">
+                    <h2 className="text-blue-600 font-medium text-xl ">
+                      Step 1:{" "}
+                      <span className="text-gray-600">Installation</span>
+                    </h2>
+                    <TerminalDisplay
+                      title="Install SDK"
+                      commands={["npm install mofelytics"]}
+                    />
                   </div>
-                  <div>
-                    <h2>Step 2: Initialization</h2>
-                    <p>npm install mofelytics</p>
+                  <div className=" flex flex-col w-full gap-5">
+                    <h2 className="text-blue-600 font-medium text-xl ">
+                      Step 2:{" "}
+                      <span className="text-gray-600">Initialization</span>
+                    </h2>
+                    <CodeSnippet
+                      code={codeExample}
+                      title="SDK initilization"
+                      language="javascript"
+                      showLineNumbers={true}
+                    />
                   </div>
                 </div>
+                <Link
+                  to={"/projects/dashboard"}
+                  className="bg-blue-600 text-white mt-8 w-fit self-end rounded-lg px-7 py-[10px] "
+                >
+                  View Dashboard
+                </Link>
               </div>
             ) : step == 3 ? (
               <div></div>
@@ -137,7 +179,7 @@ const NewProject = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 py-4 px-3 flex justify-center items-center w-full left-0 bg-white ">
+      <div className="fixed bottom-0 py-4 px-3 flex md:hidden justify-center items-center w-full left-0 bg-white ">
         <div className="flex items-center">
           <div className="relative flex items-center">
             <span
