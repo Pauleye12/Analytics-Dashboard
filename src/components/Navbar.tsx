@@ -58,12 +58,16 @@ const Navbar = () => {
 
         {location.pathname == "/" ? (
           <div className="flex text-gray-500 font-medium justify-between items-center gap-5 md:max-w-[400px] md:w-full text-lg">
-            <Link className="hidden md:flex " to={"#"}>
+            <a className="hidden md:flex " href="/#features">
               Features
-            </Link>
-            <Link className="hidden md:flex " to={"#"}>
+            </a>
+            <a
+              href="https://github.com/scmofeoluwa/minalytics"
+              className="hidden md:flex "
+              target="_blank"
+            >
               Documentation
-            </Link>
+            </a>
             <Link
               className="inline-flex items-center px-5 py-[6px] border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
               to={"/signIn"}
@@ -73,18 +77,16 @@ const Navbar = () => {
           </div>
         ) : location.pathname.includes("/signIn") ? (
           <div className="flex text-gray-500 font-medium justify-end items-center gap-10 md:max-w-[400px] md:w-full text-lg">
-            <Link className="hidden md:flex " to={"/"}>
-              Features
-            </Link>
-            <Link className="hidden md:flex " to={"/docs"}>
+            <a
+              href="https://github.com/scmofeoluwa/minalytics"
+              className="hidden md:flex "
+              target="_blank"
+            >
               Documentation
-            </Link>
+            </a>
           </div>
         ) : location.pathname.includes("/dashboard") ? (
           <div className="flex text-gray-500 font-medium justify-between items-center gap-5 md:max-w-[400px] md:w-full text-lg">
-            <Link className="hidden md:flex " to={"#"}>
-              Features
-            </Link>
             <Link className="hidden md:flex " to={"#"}>
               Documentation
             </Link>

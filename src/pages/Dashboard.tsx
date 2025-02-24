@@ -103,7 +103,7 @@ const Dashboard = () => {
 
         {view == "Overview" ? (
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-wrap gap-5 items-center justify-between mb-8">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">
                   Analytics Dashboard
@@ -112,9 +112,9 @@ const Dashboard = () => {
                   Track your website's performance and user behavior
                 </p>
               </div>
-              <div className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer">
+              <button className="px-4 h-fit py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer">
                 Export Report
-              </div>
+              </button>
             </div>
 
             {/* Key Metrics */}

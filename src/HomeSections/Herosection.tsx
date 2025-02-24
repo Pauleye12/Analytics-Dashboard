@@ -26,14 +26,18 @@ const Herosection = () => {
               </p>
               <div className="mt-8 flex gap-4">
                 <Link
-                  to={"/dashboard"}
+                  to={"/signIn"}
                   className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
                 >
                   Get Started
                 </Link>
-                <button className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                <a
+                  href="https://github.com/scmofeoluwa/minalytics"
+                  target="_blank"
+                  className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                >
                   Learn More
-                </button>
+                </a>
               </div>
             </div>
             <div className="relative">

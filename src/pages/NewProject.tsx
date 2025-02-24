@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TerminalDisplay } from "../components/TerminalDisp";
+// import { TerminalDisplay } from "../components/TerminalDisp";
 import { CodeSnippet } from "../components/CodeSnippet";
 import { Link } from "react-router-dom";
 
@@ -20,24 +20,9 @@ const NewProject = () => {
   };
 
   const codeExample = `// Initialize the SDK
-const sdk = new ExampleSDK({
-  apiKey: process.env.API_KEY,
-  environment: 'production'
-});
-
-// Make API requests
-async function fetchUserData() {
-  try {
-    const response = await sdk.users.get({
-      userId: '123'
-    });
-    console.log('User data:', response);
-  } catch (error) {
-    console.error('Error fetching user:', error);
-  }
-}`;
+<script src="minalytics.min.js" tracking-id="YOUR_TRACKING_ID">`;
   return (
-    <div className="w-full min-h-screen newProjectBG2 flex justify-center">
+    <div className="w-full min-h-screen newProjectBG2 pb-5 flex justify-center">
       <div className="max-w-7xl grid gap-7 grid-cols-6 w-full mx-auto pt-[80px] px-4 py-8">
         <div className=" hidden col-span-2 border-r border-gray-300 border-solid px-4 md:flex flex-col gap-14 pt-[80px]   "></div>
         <div className=" fixed left-0 h-full hidden col-span-2 border-r border-gray-300 border-solid pointer-events-none w-full px-4 pl-[80px] md:flex flex-col gap-14 pt-[80px]   ">
@@ -141,9 +126,18 @@ async function fetchUserData() {
                     instructions for installing and using the Web SDK in your
                     project.
                   </p>
+                  <p className="text-gray-600">
+                    To start tracking visits and events on your website,
+                    download the minalytics.min.js file from the Releases tab on
+                    GitHub.{" "}
+                    <strong>
+                      Replace YOUR_TRACKING_ID with the unique tracking ID for
+                      your app
+                    </strong>
+                  </p>
                 </div>
                 <div className="mt-10 flex flex-col gap-14 ">
-                  <div className=" flex flex-col w-full gap-5">
+                  {/* <div className=" flex flex-col w-full gap-5">
                     <h2 className="text-blue-600 font-medium text-xl ">
                       Step 1:{" "}
                       <span className="text-gray-600">Installation</span>
@@ -152,12 +146,11 @@ async function fetchUserData() {
                       title="Install SDK"
                       commands={["npm install mofelytics"]}
                     />
-                  </div>
+                  </div> */}
                   <div className=" flex flex-col w-full gap-5">
-                    <h2 className="text-blue-600 font-medium text-xl ">
-                      Step 2:{" "}
+                    {/* <h2 className="text-blue-600 font-medium text-xl ">
                       <span className="text-gray-600">Initialization</span>
-                    </h2>
+                    </h2> */}
                     <CodeSnippet
                       code={codeExample}
                       title="SDK initilization"

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { Activity } from "lucide-react";
@@ -51,24 +51,27 @@ const ProjectsNavbar = () => {
           <span className="text-2xl font-bold ml-2 ">Mofelytics</span>{" "}
         </h1>
 
-        <div className="flex text-gray-500 font-medium justify-between items-center gap-5 md:max-w-[400px] md:w-full text-lg">
-          <Link className="hidden md:flex " to={"#"}>
+        {/* <Link className="hidden md:flex " to={"#"}>
             Features
-          </Link>
-          <Link className="hidden md:flex " to={"#"}>
+          </Link> */}
+
+        <div className="flex text-lg text-gray-500 font-medium items-center justify-center gap-6     ">
+          <a
+            href="https://github.com/scmofeoluwa/minalytics"
+            className="hidden mr-7 md:flex self-end "
+            target="_blank"
+          >
             Documentation
-          </Link>
-          <div className="flex items-center justify-center gap-4     ">
-            <button className="inline-flex p-[7px] items-center  border border-solid border-gray-500 rounded-full text-base font-medium  shadow-sm     transition-colors">
-              <span className="zondicons--notification"></span>
-            </button>
-            <button
-              onClick={handleSignOut}
-              className="inline-flex items-center  border border-transparent rounded-full text-base font-medium  shadow-sm text-white bg-gray-500   transition-colors"
-            >
-              <span className="qlementine-icons--user-16"></span>
-            </button>
-          </div>
+          </a>
+          <button className="inline-flex p-[7px] items-center  border border-solid border-blue-600 rounded-full text-base font-medium  shadow-sm     transition-colors">
+            <span className="zondicons--notification text-blue-600  "></span>
+          </button>
+          <button
+            onClick={handleSignOut}
+            className="inline-flex items-center  border border-transparent rounded-full text-base font-medium  shadow-sm text-white    transition-colors"
+          >
+            <span className="qlementine-icons--user-16 text-blue-600 "></span>
+          </button>
         </div>
       </div>
     </header>

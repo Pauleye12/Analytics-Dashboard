@@ -30,7 +30,10 @@ const featuresContent = [
 ];
 const Features = () => {
   return (
-    <div className="w-full flex justify-center items-center overflow-hidden">
+    <div
+      id="features"
+      className="w-full flex justify-center items-center overflow-hidden"
+    >
       <div className="flex max-w-[1300px] flex-col w-full px-2 lg:px-6 py-20 lg:gap-36 gap-28 items-baseline ">
         <h1 className="text-center w-full mb-6 text-gray-900 text-5xl font-bold ">
           What We Offer

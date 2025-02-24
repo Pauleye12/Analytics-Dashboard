@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+// import { useState } from "react";
+// import { ChevronDown } from "lucide-react";
 import ProjectPreviewCard from "../components/ProjectPreviewCard";
 import HistoryPreviewCard from "../components/HistoryPreviewCard";
 import { useNavigate } from "react-router";
@@ -58,7 +58,7 @@ const previews = [
 
 const ProjectsHome = () => {
   const navigate = useNavigate();
-  const [filterParam, setFilterParam] = useState("Add Filter");
+  // const [filterParam, setFilterParam] = useState("Add Filter");
   return (
     <div className="bg-gray-50 min-h-screen text-gray-600 ">
       <div className="max-w-7xl bg-gray-50 flex gap-7 flex-col w-full mx-auto pt-[80px] px-4 py-8">
@@ -81,12 +81,12 @@ const ProjectsHome = () => {
                 id="searchProjects"
               />
             </div>
-            <button className="border hidden border-solid border-gray-200 shadow-sm bg-white rounded-lg px-3 p-2 md:flex items-center gap-2 hover:bg-slate-50 transition-all duration-300 hover:translate-y-0.5  ">
+            {/* <button className="border hidden border-solid border-gray-200 shadow-sm bg-white rounded-lg px-3 p-2 md:flex items-center gap-2 hover:bg-slate-50 transition-all duration-300 hover:translate-y-0.5  ">
               <h1>{filterParam}</h1>
               <ChevronDown className="text-blue-600" />
-            </button>
+            </button> */}
           </div>
-          <div className=" mobile w-full md:hidden flex justify-between items-center gap-3 ">
+          {/* <div className=" mobile w-full md:hidden flex justify-between items-center gap-3 ">
             <button className="border md:hidden border-solid border-gray-200 shadow-sm bg-white rounded-lg px-3 p-2 flex items-center gap-2 hover:bg-slate-50 transition-all duration-300 hover:translate-y-0.5  ">
               <h1>{filterParam}</h1>
               <ChevronDown className="text-blue-600" />
@@ -99,7 +99,7 @@ const ProjectsHome = () => {
             >
               Add New Project
             </button>
-          </div>
+          </div> */}
           <button
             onClick={() => navigate("new_project")}
             className={`bg-blue-600 hidden md:flex  w-[180px]  text-white justify-items-end rounded-lg px-4 py-2 hover:scale-105 hover:bg-blue-700 duration-300   ${
@@ -119,7 +119,6 @@ const ProjectsHome = () => {
                   title={preview.title}
                   number={preview.number}
                   hash={preview.hash}
-                  isActive={preview.isActive}
                 />
               ))}
             </div>
