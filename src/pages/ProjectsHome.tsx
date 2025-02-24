@@ -1,7 +1,7 @@
 // import { useState } from "react";
 // import { ChevronDown } from "lucide-react";
 import ProjectPreviewCard from "../components/ProjectPreviewCard";
-import HistoryPreviewCard from "../components/HistoryPreviewCard";
+// import HistoryPreviewCard from "../components/HistoryPreviewCard";
 import { useNavigate } from "react-router";
 
 const projectDets = [
@@ -43,25 +43,25 @@ const projectDets = [
   },
 ];
 
-const previews = [
-  {
-    title: "fix images not clickable",
-    number: "2",
-    hash: "9q5hcz2wx",
-  },
-  {
-    title: "fix images not clickable",
-    number: "2",
-    hash: "9q5hcz2wx",
-  },
-];
+// const previews = [
+//   {
+//     title: "fix images not clickable",
+//     number: "2",
+//     hash: "9q5hcz2wx",
+//   },
+//   {
+//     title: "fix images not clickable",
+//     number: "2",
+//     hash: "9q5hcz2wx",
+//   },
+// ];
 
 const ProjectsHome = () => {
   const navigate = useNavigate();
   // const [filterParam, setFilterParam] = useState("Add Filter");
   return (
-    <div className="bg-gray-50 min-h-screen text-gray-600 ">
-      <div className="max-w-7xl bg-gray-50 flex gap-7 flex-col w-full mx-auto pt-[80px] px-4 py-8">
+    <div className="bg-gray-50 dashbg min-h-screen text-gray-600 ">
+      <div className="max-w-7xl  flex gap-7 flex-col w-full mx-auto pt-[80px] px-4 py-8">
         <h1 className="text-2xl font-medium text-blue-600 ">Welcome, Mofe</h1>
         {/* <div >
 
@@ -109,8 +109,8 @@ const ProjectsHome = () => {
             Add New Project
           </button>
         </div>
-        <div className="md:grid  md:grid-cols-4 gap-10 md:gap-7 ">
-          <div className=" w-full  flex flex-col gap-6 ">
+
+        {/* <div className=" w-full  flex flex-col gap-6 ">
             <h1 className="text-gray-900 font-semibold ">Recent History</h1>
             <div className="border w-full border-solid border-gray-200 rounded-xl flex flex-col items-center p-1 pb-0 bg-white">
               {previews.map((preview) => (
@@ -122,26 +122,25 @@ const ProjectsHome = () => {
                 />
               ))}
             </div>
-          </div>
-          <div className="col-span-3 mt-8 md:mt-0 flex flex-col gap-6">
-            <h1 className="text-gray-900 font-semibold ">Projects</h1>
-            <div className="flex justify-center flex-wrap items-center h-full gap-5">
-              {projectDets ? (
-                projectDets.map((det, index) => (
-                  <ProjectPreviewCard key={index} det={det} />
-                ))
-              ) : (
-                <div className="flex flex-col gap-9 w-full items-center">
-                  <h1 className="text-center text-3xl font-semibold text-gray-800 max-w-[400px] w-full ">
-                    Insights start with action—add your first project{" "}
-                    <span className="text-blue-600">now!</span>
-                  </h1>
-                  <button className="bg-blue-600 w-[180px] text-white justify-items-end rounded-lg px-4 py-2 hover:scale-105 hover:bg-blue-700 duration-300">
-                    Add New Project
-                  </button>
-                </div>
-              )}
-            </div>
+          </div> */}
+        <div className=" mt-8 md:mt-0 flex flex-col gap-6">
+          <h1 className="text-gray-900 font-semibold ">Projects</h1>
+          <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 items-center h-full gap-5">
+            {projectDets ? (
+              projectDets.map((det, index) => (
+                <ProjectPreviewCard key={index} det={det} />
+              ))
+            ) : (
+              <div className="flex flex-col gap-9 w-full items-center">
+                <h1 className="text-center text-3xl font-semibold text-gray-800 max-w-[400px] w-full ">
+                  Insights start with action—add your first project{" "}
+                  <span className="text-blue-600">now!</span>
+                </h1>
+                <button className="bg-blue-600 w-[180px] text-white justify-items-end rounded-lg px-4 py-2 hover:scale-105 hover:bg-blue-700 duration-300">
+                  Add New Project
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
