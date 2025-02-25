@@ -1,5 +1,20 @@
 import { useNavigate } from "react-router";
 import Navbar from "../components/Navbar.tsx";
+import { motion } from "motion/react";
+
+const onboardingScreenVariants = {
+  initial: { opacity: 0, x: "100%" },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.3, ease: "easeOut", when: "beforeChildren" },
+  },
+  exit: {
+    opacity: 0,
+    x: "-100%",
+    transition: { duration: 1, ease: "easeOut" },
+  },
+};
 
 const OnboardingScreen = () => {
   const navigate = useNavigate();
@@ -85,7 +100,13 @@ const OnboardingScreen = () => {
   //   };
   // }, []);
   return (
-    <div className="w-full h-screen signInPattern bg-gray-50 px-4 py-2 justify-center flex items-center ">
+    <motion.div
+      variants={onboardingScreenVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="w-full h-screen signInPattern bg-gray-50 px-4 py-2 justify-center flex items-center "
+    >
       <Navbar />
       <div className="flex flex-col gap-10 items-center justify-center">
         <h1 className="text-gray-900 text-3xl font-semibold text-center ">
@@ -113,7 +134,7 @@ const OnboardingScreen = () => {
           <span className="bg-gray-800 h-0.5 w-full max-w-[500px]"></span>
         </div> */}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

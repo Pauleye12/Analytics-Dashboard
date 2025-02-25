@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { Activity } from "lucide-react";
+import { Link } from "react-router-dom";
 import app from "../firebaseconfig";
 
 const auth = getAuth(app);
@@ -45,11 +46,11 @@ const ProjectsNavbar = () => {
       } `}
     >
       <div className="max-w-[1300px] w-full gap-9 flex justify-between items-center ">
-        <h1 className="flex items-center">
+        <Link to={"/"} className="flex items-center">
           {" "}
           <Activity className="text-blue-600" size={30} />{" "}
           <span className="text-2xl font-bold ml-2 ">Mofelytics</span>{" "}
-        </h1>
+        </Link>
 
         {/* <Link className="hidden md:flex " to={"#"}>
             Features

@@ -4,6 +4,30 @@ import ProjectPreviewCard from "../components/ProjectPreviewCard";
 // import HistoryPreviewCard from "../components/HistoryPreviewCard";
 import { useNavigate } from "react-router";
 
+import { motion } from "motion/react";
+
+const onboardingScreenVariants = {
+  initial: { opacity: 0, x: "100%" },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.3, ease: "easeOut", when: "beforeChildren" },
+  },
+  exit: {
+    opacity: 0,
+    x: "-100%",
+    transition: { duration: 1, ease: "easeOut" },
+  },
+};
+
+const whyDiffrentWrapperVariants = {
+  initial: { opacity: 0 },
+  inView: {
+    opacity: 1,
+    transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.2 },
+  },
+};
+
 const projectDets = [
   {
     img: "",
@@ -60,7 +84,13 @@ const ProjectsHome = () => {
   const navigate = useNavigate();
   // const [filterParam, setFilterParam] = useState("Add Filter");
   return (
-    <div className="bg-gray-50 dashbg min-h-screen text-gray-600 ">
+    <motion.div
+      variants={onboardingScreenVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="bg-gray-50 dashbg min-h-screen text-gray-600 "
+    >
       <div className="max-w-7xl  flex gap-7 flex-col w-full mx-auto pt-[80px] px-4 py-8">
         <h1 className="text-2xl font-medium text-blue-600 ">Welcome, Mofe</h1>
         {/* <div >
@@ -125,7 +155,13 @@ const ProjectsHome = () => {
           </div> */}
         <div className=" mt-8 md:mt-0 flex flex-col gap-6">
           <h1 className="text-gray-900 font-semibold ">Projects</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 items-center h-full gap-5">
+          <motion.div
+            variants={whyDiffrentWrapperVariants}
+            initial="initial"
+            whileInView="inView"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 items-center h-full gap-5"
+          >
             {projectDets ? (
               projectDets.map((det, index) => (
                 <ProjectPreviewCard key={index} det={det} />
@@ -141,10 +177,10 @@ const ProjectsHome = () => {
                 </button>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

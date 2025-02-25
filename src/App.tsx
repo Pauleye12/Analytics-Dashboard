@@ -6,21 +6,32 @@ import ProjectsHome from "./pages/ProjectsHome";
 
 import ProjectsWrapper from "./pages/ProjectsWrapper";
 import NewProject from "./pages/NewProject";
+import { AnimatePresence } from "motion/react";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+    <AnimatePresence>
+      <BrowserRouter>
+        <Routes>
+          <Route key="landingPage" path="/" element={<LandingPage />} />
 
-        <Route path="/signIn" element={<OnboardingScreen />} />
-        <Route path="/projects" element={<ProjectsWrapper />}>
-          <Route index element={<ProjectsHome />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="new_project" element={<NewProject />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route
+            key="onboardingScreen"
+            path="/signIn"
+            element={<OnboardingScreen />}
+          />
+          <Route
+            key="projectsWrapper"
+            path="/projects"
+            element={<ProjectsWrapper />}
+          >
+            <Route index element={<ProjectsHome />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="new_project" element={<NewProject />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AnimatePresence>
   );
 }
 

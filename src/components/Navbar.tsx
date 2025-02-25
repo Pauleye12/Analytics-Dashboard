@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import app from "../firebaseconfig.ts";
+import { motion } from "motion/react";
 
 const auth = getAuth(app);
 const Navbar = () => {
@@ -11,8 +12,6 @@ const Navbar = () => {
   // const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
-  console.log(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +40,37 @@ const Navbar = () => {
         alert(`Sign out failed: ${error.message}`);
       });
   };
+
+  // Animation config
+  const navVariants = {
+    initial: {
+      y: 0,
+    },
+    animate: {
+      y: 0,
+      transition: {
+        duration: 0.2,
+        ease: "easeOut",
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const linkVariants = {
+    initial: {
+      y: -70,
+    },
+    animate: {
+      y: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
+
   return (
     <header
       className={`fixed z-40 flex items-center justify-center top-0 left-0 w-full bg-transparent px-3  py-4 transition-all ${
@@ -49,32 +79,50 @@ const Navbar = () => {
           : " bg-transparent "
       } `}
     >
-      <div className="max-w-[1300px] w-full gap-9 flex justify-between items-center ">
-        <h1 className="flex items-center">
-          {" "}
-          <Activity className="text-blue-600" size={30} />{" "}
-          <span className="text-2xl font-bold ml-2 ">Mofelytics</span>{" "}
-        </h1>
+      <motion.div
+        variants={navVariants}
+        initial="initial"
+        animate="animate"
+        className="max-w-[1300px] w-full gap-9 flex justify-between items-center "
+      >
+        <motion.div variants={linkVariants} className="flex items-center">
+          <Link to={"/"} className="flex items-center">
+            {" "}
+            <Activity className="text-blue-600" size={30} />{" "}
+            <span className="text-2xl font-bold ml-2 ">Mofelytics</span>{" "}
+          </Link>
+        </motion.div>
 
         {location.pathname == "/" ? (
-          <div className="flex text-gray-500 font-medium justify-between items-center gap-5 md:max-w-[400px] md:w-full text-lg">
-            <a className="hidden md:flex " href="/#features">
-              Features
-            </a>
-            <a
-              href="https://github.com/scmofeoluwa/minalytics"
+          <motion.div
+            variants={linkVariants}
+            className="flex text-gray-500 font-medium justify-between items-center gap-5 md:max-w-[400px] md:w-full text-lg"
+          >
+            <motion.a
+              variants={linkVariants}
               className="hidden md:flex "
+              href="/#features"
+            >
+              Features
+            </motion.a>
+            <motion.a
+              variants={linkVariants}
+              className="hidden md:flex "
+              href="https://github.com/scmofeoluwa/minalytics"
               target="_blank"
             >
               Documentation
-            </a>
-            <Link
-              className="inline-flex items-center px-5 py-[6px] border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
-              to={"/signIn"}
-            >
-              Log In
-            </Link>
-          </div>
+            </motion.a>
+
+            <motion.div variants={linkVariants} className="flex items-center">
+              <Link
+                className="inline-flex items-center px-5 py-[6px] border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+                to={"/signIn"}
+              >
+                Log In
+              </Link>
+            </motion.div>
+          </motion.div>
         ) : location.pathname.includes("/signIn") ? (
           <div className="flex text-gray-500 font-medium justify-end items-center gap-10 md:max-w-[400px] md:w-full text-lg">
             <a
@@ -113,7 +161,7 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-      </div>
+      </motion.div>
     </header>
   );
 };
