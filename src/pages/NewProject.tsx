@@ -2,6 +2,7 @@ import { useState } from "react";
 // import { TerminalDisplay } from "../components/TerminalDisp";
 import { CodeSnippet } from "../components/CodeSnippet";
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 
 const NewProject = () => {
   const [projectName, setProjectName] = useState("");
@@ -19,10 +20,35 @@ const NewProject = () => {
     }
   };
 
+  const onboardingScreenVariants = {
+    initial: { opacity: 0, x: "100%" },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: 0.4,
+        duration: 0.5,
+        ease: "easeOut",
+        when: "beforeChildren",
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: "-100%",
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+
   const codeExample = `// Initialize the SDK
 <script src="minalytics.min.js" tracking-id="YOUR_TRACKING_ID">`;
   return (
-    <div className="w-full min-h-screen newProjectBG2 pb-5 flex justify-center">
+    <motion.div
+      variants={onboardingScreenVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="w-full min-h-screen newProjectBG2 pb-5 flex justify-center"
+    >
       <div className="max-w-7xl grid gap-7 grid-cols-6 w-full mx-auto pt-[80px] px-4 py-8">
         <div className=" hidden col-span-2 border-r border-gray-300 border-solid px-4 md:flex flex-col gap-14 pt-[80px]   "></div>
         <div className=" fixed left-0 h-full hidden col-span-2 border-r border-gray-300 border-solid pointer-events-none w-full px-4 pl-[80px] md:flex flex-col gap-14 pt-[80px]   ">
@@ -223,7 +249,7 @@ const NewProject = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

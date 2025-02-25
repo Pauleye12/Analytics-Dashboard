@@ -6,6 +6,7 @@ import type { AnalyticsData } from "../types/analytics";
 // import { useNavigate } from "react-router";
 import { useState } from "react";
 import Settings from "../components/Settings";
+import { motion } from "motion/react";
 
 //firebase configs
 // import app from "../firebaseconfig";
@@ -47,6 +48,24 @@ const mockData: AnalyticsData = {
     { name: "Tablet", count: 1300, percentage: 5 },
   ],
 };
+
+const onboardingScreenVariants = {
+  initial: { opacity: 0, x: "100%" },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.9,
+      ease: "easeOut",
+      when: "beforeChildren",
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: "-100%",
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
 const Dashboard = () => {
   // const navigate = useNavigate();
 
@@ -80,7 +99,13 @@ const Dashboard = () => {
   //     });
   // };
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div
+      variants={onboardingScreenVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-screen bg-gray-50"
+    >
       <div className="max-w-7xl mx-auto pt-[70px] px-4 py-8">
         <div className="w-full border-b border-solid border-gray-400 flex items-center mb-[30px] font-medium text-gray-600 pb-2 gap-4 ">
           <button
@@ -219,7 +244,7 @@ const Dashboard = () => {
 
         {/* Footer */}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

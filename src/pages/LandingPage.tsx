@@ -15,7 +15,7 @@ const landingPageVariants = {
   exit: {
     opacity: 0,
     x: "-100%",
-    transition: { duration: 1, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
