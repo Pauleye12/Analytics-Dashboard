@@ -55,15 +55,15 @@ const onboardingScreenVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.9,
-      ease: "easeOut",
+      duration: 0.3,
+      ease: "easeInOut",
       when: "beforeChildren",
     },
   },
   exit: {
     opacity: 0,
     x: "-100%",
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.2, ease: "easeOut" },
   },
 };
 const Dashboard = () => {

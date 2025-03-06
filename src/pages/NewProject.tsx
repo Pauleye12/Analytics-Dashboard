@@ -26,16 +26,16 @@ const NewProject = () => {
       opacity: 1,
       x: 0,
       transition: {
-        delay: 0.4,
-        duration: 0.5,
-        ease: "easeOut",
+        delay: 0.1,
+        duration: 0.2,
+        ease: "easeIn",
         when: "beforeChildren",
       },
     },
     exit: {
       opacity: 0,
       x: "-100%",
-      transition: { duration: 0.4, ease: "easeOut" },
+      transition: { duration: 0.2, ease: "easeOut" },
     },
   };
 

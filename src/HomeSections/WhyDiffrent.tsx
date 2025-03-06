@@ -43,12 +43,12 @@ const data = [
 
 // Animation Variants
 const featureTextVariants = {
-  initial: { opacity: 0, scale: 0, y: 30 },
+  initial: { opacity: 0, scale: 0.8, y: 30 },
   inView: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
@@ -56,7 +56,7 @@ const whyDiffrentWrapperVariants = {
   initial: { opacity: 0 },
   inView: {
     opacity: 1,
-    transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.4 },
+    transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.2 },
   },
 };
 

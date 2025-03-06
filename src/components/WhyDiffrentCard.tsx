@@ -1,17 +1,17 @@
 import { motion } from "motion/react";
 
 const whyDiffrentCardVariants = {
-  initial: { opacity: 0, scale: 0, y: 30 },
+  initial: { opacity: 0, scale: 0.8, y: 20 },
   inView: {
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      duration: 1,
+      duration: 0.3,
       ease: "easeOut",
       when: "beforeChildren",
       type: "spring",
-      bounce: 0.4,
+      bounce: 0.2,
     },
   },
 };
@@ -24,7 +24,7 @@ const WhyDiffrentCard = ({
   return (
     <motion.div
       variants={whyDiffrentCardVariants}
-      viewport={{ once: true }}
+      // viewport={{ once: true }}
       className="flex w-[300px] flex-col gap-3 items-center p-2  "
     >
       <div>{info.icons}</div>

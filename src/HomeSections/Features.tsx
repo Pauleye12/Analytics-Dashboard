@@ -32,31 +32,31 @@ const featuresContent = [
 ];
 
 // Animation Variants
-const featureTextVariants = {
-  initial: { opacity: 0, scale: 0, y: 30 },
-  inView: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
+// const featureTextVariants = {
+//   initial: { opacity: 0, scale: 0, y: 30 },
+//   inView: {
+//     opacity: 1,
+//     scale: 1,
+//     y: 0,
+//     transition: { duration: 0.6, ease: "easeOut" },
+//   },
+// };
 
 const featureImageVariants = {
-  initial: { opacity: 0, scale: 0 },
+  initial: { opacity: 0, scale: 0.7 },
   inView: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeInOut" },
   },
 };
 
 const featureTextCardVariants = {
-  initial: { opacity: 0, x: -200 },
+  initial: { opacity: 0, x: -100 },
   inView: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeInOut" },
   },
 };
 
@@ -67,15 +67,15 @@ const Features = () => {
       className="w-full flex justify-center items-center overflow-hidden"
     >
       <div className="flex max-w-[1300px] flex-col w-full px-2 lg:px-6 py-20 lg:gap-36 gap-28 items-baseline ">
-        <motion.h1
-          variants={featureTextVariants}
-          initial="initial"
-          whileInView="inView"
-          viewport={{ once: true }}
+        <h1
+          // variants={featureTextVariants}
+          // initial="initial"
+          // whileInView="inView"
+          // viewport={{ once: true }}
           className="text-center w-full mb-6 text-gray-900 text-5xl font-bold "
         >
           What We Offer
-        </motion.h1>
+        </h1>
         {featuresContent.map((f, index) => (
           <div
             key={index}

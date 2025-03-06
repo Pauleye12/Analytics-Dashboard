@@ -17,7 +17,7 @@ const heroTextVariants = {
     scale: 1,
     opacity: 1,
     delay: 0.8,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
@@ -27,7 +27,7 @@ const heroButtonVariants = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.5, delay: 1, ease: "easeOut" },
+    transition: { duration: 0.3, delay: 0.5, ease: "easeOut" },
   },
 };
 
@@ -37,11 +37,11 @@ const heroChartVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1,
-      delay: 1.1,
+      duration: 0.7,
+      delay: 0.8,
       ease: "easeOut",
       type: "spring",
-      bounce: 0.53,
+      bounce: 0.3,
     },
   },
 };

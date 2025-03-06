@@ -8,16 +8,15 @@ const onboardingScreenVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 0.4,
-      duration: 0.5,
-      ease: "easeOut",
+      duration: 0.3,
+      ease: "easeIn",
       when: "beforeChildren",
     },
   },
   exit: {
     opacity: 0,
     x: "-100%",
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.2, ease: "easeInOut" },
   },
 };
 
@@ -120,14 +119,14 @@ const OnboardingScreen = () => {
         <div className="flex gap-5 flex-col items-center">
           <button
             onClick={() => navigate("/projects")}
-            className="flex justify-center bg-gray-900 text-white rounded-md items-center gap-4 hover:scale-105 transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 "
+            className="flex justify-center bg-gray-900 text-white rounded-md items-center gap-4 hover:scale-[1.02] transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 "
           >
             <span className="flat-color-icons--google"></span>{" "}
             <p>With Google</p>
           </button>
           <button
             onClick={() => navigate("/projects")}
-            className="flex justify-center bg-[#1668e2] text-white rounded-md items-center gap-4 hover:scale-105 transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 relative "
+            className="flex justify-center bg-[#1668e2] text-white rounded-md items-center gap-4 hover:scale-[1.02] transition-all duration-300 w-[270px] text-lg font-medium py-2 px-2 relative "
           >
             <span className="pajamas--github"></span>
             <p>With Github</p>

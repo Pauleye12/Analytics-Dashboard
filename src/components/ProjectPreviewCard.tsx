@@ -1,22 +1,22 @@
 import { GitFork, MoreHorizontal, GitBranch } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+// import { motion } from "motion/react";
 
-const whyDiffrentCardVariants = {
-  initial: { opacity: 0, scale: 0, x: 50 },
-  inView: {
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-      when: "beforeChildren",
-      type: "spring",
-      bounce: 0.4,
-    },
-  },
-};
+// const whyDiffrentCardVariants = {
+//   initial: { opacity: 0, scale: 0.9, x: 20 },
+//   inView: {
+//     opacity: 1,
+//     scale: 1,
+//     x: 0,
+//     transition: {
+//       duration: 0.2,
+//       ease: "easeOut",
+//       when: "beforeChildren",
+//       type: "spring",
+//       bounce: 0.2,
+//     },
+//   },
+// };
 
 interface ProjectPreviewProps {
   det: {
@@ -32,9 +32,9 @@ interface ProjectPreviewProps {
 
 const ProjectPreviewCard = ({ det }: ProjectPreviewProps) => {
   return (
-    <motion.div
+    <div
       className="w-full max-w-md bg-white rounded-xl border hover:bg-slate-50 transition-all duration-300 hover:scale-[1.02] border-gray-200 shadow-sm p-4"
-      variants={whyDiffrentCardVariants}
+      // variants={whyDiffrentCardVariants}
     >
       <Link to={"dashboard"} className="w-full max-w-md rounded-xl ">
         <div className="flex items-start justify-between">
@@ -80,7 +80,7 @@ const ProjectPreviewCard = ({ det }: ProjectPreviewProps) => {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 };
 

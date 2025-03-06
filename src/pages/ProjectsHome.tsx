@@ -11,22 +11,22 @@ const onboardingScreenVariants = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: "easeOut", when: "beforeChildren" },
+    transition: { duration: 0.3, ease: "easeInOut", when: "beforeChildren" },
   },
   exit: {
     opacity: 0,
     x: "-100%",
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.2, ease: "easeInOut" },
   },
 };
 
-const whyDiffrentWrapperVariants = {
-  initial: { opacity: 0 },
-  inView: {
-    opacity: 1,
-    transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.2 },
-  },
-};
+// const whyDiffrentWrapperVariants = {
+//   initial: { opacity: 0 },
+//   inView: {
+//     opacity: 1,
+//     transition: { duration: 0.1, ease: "easeInOut", staggerChildren: 0.2 },
+//   },
+// };
 
 const projectDets = [
   {
@@ -132,7 +132,7 @@ const ProjectsHome = () => {
           </div> */}
           <button
             onClick={() => navigate("new_project")}
-            className={`bg-blue-600 hidden md:flex  w-[180px]  text-white justify-items-end rounded-lg px-4 py-2 hover:scale-105 hover:bg-blue-700 duration-300   ${
+            className={`bg-blue-600 self-start  flex  w-[180px]  text-white justify-items-end rounded-lg px-4 py-2 hover:scale-105 hover:bg-blue-700 duration-300   ${
               projectDets ? "animate-none" : "animate-bounce"
             }animate-bounce `}
           >
@@ -155,11 +155,11 @@ const ProjectsHome = () => {
           </div> */}
         <div className=" mt-8 md:mt-0 flex flex-col gap-6">
           <h1 className="text-gray-900 font-semibold ">Projects</h1>
-          <motion.div
-            variants={whyDiffrentWrapperVariants}
-            initial="initial"
-            whileInView="inView"
-            viewport={{ once: true }}
+          <div
+            // variants={whyDiffrentWrapperVariants}
+            // initial="initial"
+            // whileInView="inView"
+            // viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 items-center h-full gap-5"
           >
             {projectDets ? (
@@ -177,7 +177,7 @@ const ProjectsHome = () => {
                 </button>
               </div>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.div>
